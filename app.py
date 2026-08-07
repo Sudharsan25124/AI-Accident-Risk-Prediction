@@ -53,53 +53,49 @@ if st.button("Predict"):
     prediction = model.predict([[weather_value, speed, traffic_value]])
 
     risk = risk_encoder.inverse_transform(prediction)[0]
-
-# Risk Percentage
-if risk == "High":
-
-    st.progress(95)
-
-    st.write("Risk Probability : 95%")
-
-elif risk == "Medium":
-
-    st.progress(60)
-
-    st.write("Risk Probability : 60%")
-
-else:
-
-    st.progress(20)
-
-    st.write("Risk Probability : 20%")
-
-# Safety Tips
+    # Risk Percentage
     if risk == "High":
-        st.error("🚨 High Accident Risk")
-
-        st.subheader("Safety Tips")
-
-        st.write("✔ Reduce Vehicle Speed")
-        st.write("✔ Wear Seat Belt")
-        st.write("✔ Maintain Safe Distance")
-        st.write("✔ Avoid Mobile Phone While Driving")
-
+        st.progress(95)
+        
+        st.write("Risk Probability : 95%")
+    
     elif risk == "Medium":
-
-        st.warning("⚠️ Medium Accident Risk")
-
-        st.subheader("Safety Tips")
-
-        st.write("✔ Drive Carefully")
-        st.write("✔ Follow Traffic Rules")
-
+        
+        st.progress(60)
+        
+        st.write("Risk Probability : 60%")
+    
     else:
-
-        st.success("✅ Low Accident Risk")
-
-        st.subheader("Safety Tips")
-
-        st.write("✔ Continue Safe Driving")
+        
+        st.progress(20)
+        
+        st.write("Risk Probability : 20%")
+    
+    # Safety Tips
+        if risk == "High":
+            st.error("🚨 High Accident Risk")
+            
+            st.subheader("Safety Tips")
+            
+            st.write("✔ Reduce Vehicle Speed")
+            st.write("✔ Wear Seat Belt")
+            st.write("✔ Maintain Safe Distance")
+            st.write("✔ Avoid Mobile Phone While Driving")
+        elif risk == "Medium":
+            st.warning("⚠️ Medium Accident Risk")
+            
+            st.subheader("Safety Tips")
+            
+            st.write("✔ Drive Carefully")
+            st.write("✔ Follow Traffic Rules")
+        
+        else:
+          
+            st.success("✅ Low Accident Risk")
+            
+            st.subheader("Safety Tips")
+            
+            st.write("✔ Continue Safe Driving")
 
 
 #Footer
