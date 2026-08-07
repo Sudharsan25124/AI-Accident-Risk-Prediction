@@ -53,54 +53,78 @@ if st.button("Predict"):
     prediction = model.predict([[weather_value, speed, traffic_value]])
 
     risk = risk_encoder.inverse_transform(prediction)[0]
-    # Risk Percentage
+
     if risk == "High":
+        st.error("🚨 High Accident Risk")
+
         st.progress(95)
-        
+
         st.write("Risk Probability : 95%")
-    
+
+        st.subheader("🛡️ Safety Tips")
+
+        st.write("✔ Reduce Vehicle Speed")
+        st.write("✔ Wear Seat Belt")
+        st.write("✔ Maintain Safe Distance")
+        st.write("✔ Avoid Mobile Phone While Driving")
+
     elif risk == "Medium":
-        
+        st.warning("⚠️ Medium Accident Risk")
+
         st.progress(60)
-        
+
         st.write("Risk Probability : 60%")
-    
+
+        st.subheader("🛡️ Safety Tips")
+
+        st.write("✔ Drive Carefully")
+        st.write("✔ Follow Traffic Rules")
+
     else:
-        
-        st.progress(20)
-        
-        st.write("Risk Probability : 20%")
-    
-    # Safety Tips
-        if risk == "High":
-            st.error("🚨 High Accident Risk")
-            
-            st.subheader("Safety Tips")
-            
-            st.write("✔ Reduce Vehicle Speed")
-            st.write("✔ Wear Seat Belt")
-            st.write("✔ Maintain Safe Distance")
-            st.write("✔ Avoid Mobile Phone While Driving")
-        elif risk == "Medium":
-            st.warning("⚠️ Medium Accident Risk")
-            
-            st.subheader("Safety Tips")
-            
-            st.write("✔ Drive Carefully")
-            st.write("✔ Follow Traffic Rules")
-        
-        else:
-          
-            st.success("✅ Low Accident Risk")
-            
-            st.subheader("Safety Tips")
-            
-            st.write("✔ Continue Safe Driving")
+       st.success("✅ Low Accident Risk")
 
+       st.progress(20)
 
-#Footer
+       st.write("Risk Probability : 20%")
+
+       st.subheader("🛡️ Safety Tips")
+
+       st.write("✔ Continue Safe Driving")
+
+# MODEL DETAILS
 st.markdown("---")
 
-st.write("Developed By : Sudharsan V")
+st.subheader("📊 Model Information")
 
-st.write("Department : AI & DS")
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.metric("Algorithm", "Random Forest")
+
+with col2:
+    st.metric("Dataset", "500 Records")
+
+with col3:
+    st.metric("Accuracy", "95%")
+
+# FOOTER
+st.markdown("---")
+
+st.markdown(
+"""
+<center>
+
+### 🚗 AI Based Accident Risk Prediction System
+
+Developed By **Sudharsan**
+
+Department of Artificial Intelligence & Data Science
+
+Using **Python | Streamlit | Machine Learning**
+
+© 2026 All Rights Reserved
+
+</center>
+""",
+unsafe_allow_html=True
+)
